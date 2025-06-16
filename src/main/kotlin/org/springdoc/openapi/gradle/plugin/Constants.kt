@@ -4,6 +4,8 @@ const val EXTENSION_NAME = "openApi"
 const val GROUP_NAME = "OpenApi"
 const val OPEN_API_TASK_NAME = "generateOpenApiDocs"
 const val OPEN_API_TASK_DESCRIPTION = "Generates the spring doc openapi file"
+
+const val JAVA_ASSEMBLE_TASK_NAME = "assemble"
 const val SPRING_BOOT_RUN_TASK_NAME = "bootRun"
 const val SPRING_BOOT_RUN_MAIN_CLASS_NAME_TASK_NAME = "bootRunMainClassName"
 const val SPRING_BOOT_3_RUN_MAIN_CLASS_NAME_TASK_NAME = "bootRun"

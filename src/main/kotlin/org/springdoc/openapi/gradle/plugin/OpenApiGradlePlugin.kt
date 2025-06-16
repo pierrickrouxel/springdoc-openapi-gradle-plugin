@@ -18,7 +18,9 @@ open class OpenApiGradlePlugin : Plugin<Project> {
 			plugins.apply(EXEC_FORK_PLUGIN)
 
 			extensions.create(EXTENSION_NAME, OpenApiExtension::class.java)
-			tasks.register(FORKED_SPRING_BOOT_RUN_TASK_NAME, JavaExecFork::class.java)
+			tasks.register(FORKED_SPRING_BOOT_RUN_TASK_NAME, JavaExecFork::class.java) { task ->
+				task.dependsOn(JAVA_ASSEMBLE_TASK_NAME)
+			}
 			tasks.register(OPEN_API_TASK_NAME, OpenApiGeneratorTask::class.java)
 
 			generate(this)
@@ -55,6 +57,7 @@ open class OpenApiGradlePlugin : Plugin<Project> {
 			FORKED_SPRING_BOOT_RUN_TASK_NAME,
 			JavaExecFork::class.java
 		) { fork ->
+			fork.dependsOn(tasks.named(JAVA_ASSEMBLE_TASK_NAME))
 			fork.dependsOn(tasks.named(bootRunMainClassNameTask.name))
 			fork.onlyIf { needToFork(bootRunTask, customBootRun, fork) }
 		}
